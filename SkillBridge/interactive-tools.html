@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tools</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('img101.jpg'); /* Add background image */
+            background-size: cover;  /* Ensure the image covers the whole page */
+            background-position: center;  /* Center the background image */
+            background-attachment: fixed;  /* Keep the background fixed while scrolling */
+            color: #333;
+            padding-bottom: 80px; /* Space for footer */
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(44, 62, 80, 0.8); /* Semi-transparent navbar */
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Page Layout */
+        main {
+            padding: 30px 15%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ecf0f1;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        input, textarea, button {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Calculator Styles */
+        #calculator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px; /* Adjusting position of calculator */
+        }
+
+        .calculator-display {
+            width: 100%;
+            max-width: 350px;
+            height: 60px;
+            background: #34495e;
+            color: #ecf0f1;
+            font-size: 1.5rem;
+            text-align: right;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+
+        .calculator-buttons {
+            width: 100%;
+            max-width: 350px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calculator-buttons button.clear {
+            grid-column: span 2;
+            background: #e74c3c;
+        }
+
+        .calculator-buttons button.delete {
+            background: #f39c12;
+        }
+
+        .calculator-buttons button.equals {
+            background: #1abc9c;
+            grid-column: span 2;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: rgba(44, 62, 80, 0.8);
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li> <!-- Home Link -->
+            <li><a href="#word-counter">Word Counter</a></li>
+            <li><a href="#string-reverser">String Reverser</a></li>
+            <li><a href="#factorial-calculator">Factorial</a></li>
+            <li><a href="#prime-checker">Prime Checker</a></li>
+            <li><a href="#temperature-converter">Temperature Converter</a></li>
+            <li><a href="#calculator">Calculator</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Interactive Tools</h1>
+
+        <!-- Word Counter -->
+        <section id="word-counter">
+            <h2>Word Counter</h2>
+            <textarea id="word-counter-input" rows="4" placeholder="Enter text here..."></textarea>
+            <button onclick="countWords()">Count Words</button>
+            <p id="word-counter-result"></p>
+        </section>
+
+        <!-- String Reverser -->
+        <section id="string-reverser">
+            <h2>String Reverser</h2>
+            <input type="text" id="string-input" placeholder="Enter a string">
+            <button onclick="reverseString()">Reverse String</button>
+            <p id="string-result"></p>
+        </section>
+
+        <!-- Factorial Calculator -->
+        <section id="factorial-calculator">
+            <h2>Factorial Calculator</h2>
+            <input type="number" id="factorial-input" placeholder="Enter a number">
+            <button onclick="calculateFactorial()">Calculate Factorial</button>
+            <p id="factorial-result"></p>
+        </section>
+
+        <!-- Prime Number Checker -->
+        <section id="prime-checker">
+            <h2>Prime Number Checker</h2>
+            <input type="number" id="prime-input" placeholder="Enter a number">
+            <button onclick="checkPrime()">Check Prime</button>
+            <p id="prime-result"></p>
+        </section>
+
+        <!-- Temperature Converter -->
+        <section id="temperature-converter">
+            <h2>Temperature Converter</h2>
+            <input type="number" id="temp-input" placeholder="Enter temperature in Celsius">
+            <button onclick="convertTemperature()">Convert to Fahrenheit</button>
+            <p id="temp-result"></p>
+        </section>
+
+        <!-- Calculator -->
+        <section id="calculator">
+            <h2>Calculator</h2>
+            <div class="calculator-display" id="calc-display">0</div>
+            <div class="calculator-buttons">
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button onclick="chooseOperation('/')">÷</button>
+
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button onclick="chooseOperation('*')">×</button>
+
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button onclick="chooseOperation('-')">−</button>
+
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('.')">.</button>
+                <button onclick="calculate()" class="equals">=</button>
+                <button onclick="chooseOperation('+')">+</button>
+
+                <button onclick="clearCalculator()" class="clear">C</button>
+                <button onclick="deleteNumber()" class="delete">⌫</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Interactive Tools</p>
+    </footer>
+
+    <!-- JavaScript Functions -->
+    <script>
+        let currentOperand = '';
+        let previousOperand = '';
+        let operation = null;
+
+        function updateDisplay() {
+            const display = document.getElementById('calc-display');
+            display.innerText = currentOperand || '0';
+        }
+
+        function appendNumber(number) {
+            if (currentOperand === '0' && number !== '.') {
+                currentOperand = number;
+            } else {
+                currentOperand += number;
+            }
+            updateDisplay();
+        }
+
+        function chooseOperation(op) {
+            if (currentOperand === '') return;
+            if (previousOperand !== '') {
+                calculate();
+            }
+            operation = op;
+            previousOperand = currentOperand;
+            currentOperand = '';
+        }
+
+        function clearCalculator() {
+            currentOperand = '';
+            previousOperand = '';
+            operation = null;
+            updateDisplay();
+        }
+
+        function deleteNumber() {
+            currentOperand = currentOperand.slice(0, -1);
+            updateDisplay();
+        }
+
+        function calculate() {
+            let result;
+            const prev = parseFloat(previousOperand);
+            const current = parseFloat(currentOperand);
+            if (isNaN(prev) || isNaN(current)) return;
+            switch (operation) {
+                case '+':
+                    result = prev + current;
+                    break;
+                case '-':
+                    result = prev - current;
+                    break;
+                case '*':
+                    result = prev * current;
+                    break;
+                case '/':
+                    result = prev / current;
+                    break;
+                default:
+                    return;
+            }
+            currentOperand = result.toString();
+            operation = null;
+            previousOperand = '';
+            updateDisplay();
+        }
+
+        // Word Counter
+        function countWords() {
+            const text = document.getElementById('word-counter-input').value.trim();
+            const wordCount = text ? text.split(/\s+/).length : 0;
+            document.getElementById('word-counter-result').innerText = `Word Count: ${wordCount}`;
+        }
+
+        // String Reverser
+        function reverseString() {
+            const str = document.getElementById('string-input').value;
+            const reversed = str.split('').reverse().join('');
+            document.getElementById('string-result').innerText = `Reversed String: ${reversed}`;
+        }
+
+        // Factorial Calculator
+        function calculateFactorial() {
+            const number = parseInt(document.getElementById('factorial-input').value);
+            let result = 1;
+            if (number < 0) {
+                result = 'Input must be a non-negative integer.';
+            } else {
+                for (let i = 1; i <= number; i++) {
+                    result *= i;
+                }
+            }
+            document.getElementById('factorial-result').innerText = `Factorial: ${result}`;
+        }
+
+        // Prime Checker
+        function checkPrime() {
+            const num = parseInt(document.getElementById('prime-input').value);
+            let result = `${num} is prime`;
+            if (num < 2) result = `${num} is not prime`;
+            else {
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) {
+                        result = `${num} is not prime`;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('prime-result').innerText = result;
+        }
+
+        // Temperature Converter
+        function convertTemperature() {
+            const celsius = parseFloat(document.getElementById('temp-input').value);
+            const fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById('temp-result').innerText = `${celsius}°C = ${fahrenheit}°F`;
+        }
+    </script>
+</body>
+</html>

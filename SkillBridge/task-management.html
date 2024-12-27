@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+            color: #fff;
+            text-align: center;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4caf50;
+        }
+
+        /* Background Movement */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image: url('img110.jpg'); /* Add your image file */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            animation: moveBackground 30s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(-10%, -10%);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        #task-form {
+            margin: 20px 0;
+        }
+
+        #task-form input, #task-form select {
+            padding: 10px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #task-form button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+        }
+
+        #task-form button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        #tasks-container {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            color: #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .task button {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+        }
+
+        .task button:hover {
+            background-color: #e53935;
+            transform: scale(1.1);
+        }
+
+        .task.completed {
+            background: linear-gradient(120deg, #a8ff78, #78ffd6);
+            color: #fff;
+            text-decoration: line-through;
+            animation: bounceOut 0.5s ease-in-out;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceOut {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .reminder {
+            animation: pulse 1s infinite;
+            color: red;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Task Management</h1>
+    </header>
+
+    <section id="task-form">
+        <input type="text" id="task-input" placeholder="Enter your task..." />
+        <select id="task-time">
+            <option value="300000">5 minutes</option>
+            <option value="1800000">30 minutes</option>
+            <option value="3600000">1 hour</option>
+        </select>
+        <button id="add-task-btn">Add Task</button>
+    </section>
+
+    <section id="tasks-container">
+        <!-- Tasks will be dynamically added here -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Task Management App</p>
+    </footer>
+
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const addTaskBtn = document.getElementById('add-task-btn');
+        const tasksContainer = document.getElementById('tasks-container');
+        const taskTime = document.getElementById('task-time');
+
+        addTaskBtn.addEventListener('click', () => {
+            const taskText = taskInput.value.trim();
+            const time = taskTime.value;
+            if (taskText !== '') {
+                addTask(taskText, time);
+                taskInput.value = ''; // Clear the input field
+            }
+        });
+
+        function addTask(taskText, time) {
+            const taskDiv = document.createElement('div');
+            taskDiv.classList.add('task');
+
+            const taskTextSpan = document.createElement('span');
+            taskTextSpan.textContent = taskText;
+            taskDiv.appendChild(taskTextSpan);
+
+            const completeBtn = document.createElement('button');
+            completeBtn.textContent = 'Complete';
+            completeBtn.addEventListener('click', () => {
+                taskDiv.classList.toggle('completed');
+                completeBtn.textContent = taskDiv.classList.contains('completed')
+                    ? 'Undo'
+                    : 'Complete';
+            });
+            taskDiv.appendChild(completeBtn);
+
+            tasksContainer.appendChild(taskDiv);
+
+            setTimeout(() => {
+                if (!taskDiv.classList.contains('completed')) {
+                    taskTextSpan.classList.add('reminder');
+                }
+            }, time);
+        }
+    </script>
+</body>
+</html>

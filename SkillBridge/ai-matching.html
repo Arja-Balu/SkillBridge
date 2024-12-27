@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Matching | SkillBridge</title>
+    <link rel="stylesheet" href="ai-matching.css">
+</head>
+<body>
+    <header>
+        <h1>AI Matching</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="intro">
+        <h2>Discover Your Perfect Skill Partner</h2>
+        <p>Use AI to connect with people who complement your skillset perfectly.</p>
+        <button class="action-btn" id="get-started-btn">Get Started</button>
+    </section>
+
+    <!-- New section to capture user's details -->
+    <section id="user-details">
+        <h2>Enter Your Details</h2>
+        <form>
+            <label for="skills">Skills:</label>
+            <input type="text" id="skills" placeholder="Your skills">
+
+            <label for="interests">Interests:</label>
+            <input type="text" id="interests" placeholder="Your interests">
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section id="how-it-works">
+        <h2>How AI Matching Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h3>Step 1</h3>
+                <p>Input your skills and interests.</p>
+            </div>
+            <div class="step">
+                <h3>Step 2</h3>
+                <p>Let AI analyze and find your match.</p>
+            </div>
+            <div class="step">
+                <h3>Step 3</h3>
+                <p>Connect, collaborate, and grow!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SkillBridge | AI Matching Feature</p>
+    </footer>
+
+    <script>
+        // Button animation on hover
+        document.querySelector('.action-btn').addEventListener('mouseenter', (e) => {
+            e.target.style.transform = 'scale(1.1)';
+            e.target.style.transition = 'transform 0.3s ease';
+        });
+
+        document.querySelector('.action-btn').addEventListener('mouseleave', (e) => {
+            e.target.style.transform = 'scale(1)';
+        });
+
+        // Scroll to user details section on button click
+        document.querySelector('#get-started-btn').addEventListener('click', () => {
+            document.querySelector('#user-details').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Steps animation on scroll
+        const steps = document.querySelectorAll('.step');
+        window.addEventListener('scroll', () => {
+            steps.forEach(step => {
+                const position = step.getBoundingClientRect().top;
+                const screenHeight = window.innerHeight;
+                if (position < screenHeight - 100) {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateY(0)';
+                    step.style.transition = 'all 0.8s ease-in-out';
+                } else {
+                    step.style.opacity = '0';
+                    step.style.transform = 'translateY(30px)';
+                }
+            });
+        });
+
+        // Intro background animation
+        const intro = document.querySelector('#intro');
+        let hue = 0;
+        setInterval(() => {
+            intro.style.background = `linear-gradient(to right, hsl(${hue}, 70%, 60%), hsl(${hue + 40}, 70%, 70%))`;
+            hue += 1;
+            if (hue >= 360) hue = 0;
+        }, 50);
+    </script>
+
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f7faff;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('ai101.jpg'); /* Add background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: moveBackground 30s linear infinite; /* Make background move */
+            opacity: 0.9; /* Reduce visibility of background image */
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        header {
+            background-color: rgba(42, 61, 102, 0.8);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        #intro {
+            text-align: center;
+            padding: 50px 20px;
+            color: white;
+            background: rgba(42, 61, 102, 0.7); /* Dark overlay for intro */
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .action-btn {
+            background-color: #ffba00;
+            padding: 10px 20px;
+            color: #333;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #how-it-works {
+            background-color: #e0f7fa;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .step {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+            color: #2a3d66;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #2a3d66;
+            color: white;
+            padding: 10px;
+        }
+
+        /* User details section */
+        #user-details {
+            background-color: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #user-details form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #user-details input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #user-details button {
+            background-color: #2a3d66;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #user-details button:hover {
+            background-color: #4c669f;
+        }
+    </style>
+</body>
+</html>

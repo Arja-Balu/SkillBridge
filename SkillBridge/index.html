@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SkillBridge Collaboration</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General button styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Color palette for buttons */
+        .btn-ai {
+            background-color: #4CAF50; /* Green for AI Matching */
+            color: white;
+        }
+
+        .btn-ai:hover {
+            background-color: #45a049; /* Slightly darker green on hover */
+            transform: scale(1.05);
+        }
+
+        .btn-task {
+            background-color: #2196F3; /* Blue for Task Management */
+            color: white;
+        }
+
+        .btn-task:hover {
+            background-color: #1e88e5; /* Slightly darker blue on hover */
+            transform: scale(1.05);
+        }
+
+        .btn-tools {
+            background-color: #FF9800; /* Orange for Interactive Tools */
+            color: white;
+        }
+
+        .btn-tools:hover {
+            background-color: #fb8c00; /* Slightly darker orange on hover */
+            transform: scale(1.05);
+        }
+
+        .btn-events {
+            background-color: #9C27B0; /* Purple for Global Events */
+            color: white;
+        }
+
+        .btn-events:hover {
+            background-color: #8e24aa; /* Slightly darker purple on hover */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>SkillBridge</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="banner" id="home">
+            <h2>Discover. Learn. Connect.</h2>
+            <p>Empowering communities through skill exchange and collaboration.</p>
+            <a href="#about" class="btn" style="background-color: #00796B; color: white;">Join Now</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About SkillBridge</h2>
+        <p>SkillBridge is a dynamic platform that connects people with complementary skills, fostering growth and collaboration through AI-driven matching and interactive tools.</p>
+        <div class="animated-box">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>Our Features</h2>
+        <div class="feature-container">
+            <div class="feature-card" id="ai-matching">
+                <h3>AI Matching</h3>
+                <p>Connect with individuals whose skills complement yours effortlessly.</p>
+                <a href="ai-matching.html" class="btn btn-ai">Learn More</a>
+            </div>
+            <div class="feature-card" id="task-management">
+                <h3>Task Management</h3>
+                <p>Organize your skill exchange projects seamlessly.</p>
+                <a href="task-management.html" class="btn btn-task">Learn More</a>
+            </div>
+            <div class="feature-card" id="interactive-tools">
+                <h3>Interactive Tools</h3>
+                <p>Engage with built-in tools for better collaboration.</p>
+                <a href="interactive-tools.html" class="btn btn-tools">Learn More</a>
+            </div>
+            <div class="feature-card" id="global-events">
+                <h3>Global Events</h3>
+                <p>Join workshops and events to enhance your network.</p>
+                <a href="global-events.html" class="btn btn-events">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have any questions? Feel free to get in touch with us!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SkillBridge | Empowering Communities Through Skills</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
